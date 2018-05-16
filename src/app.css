@@ -1,0 +1,9 @@
+html {
+  height: 100%;
+  background: rgb(215, 215, 224);
+}
+
+.App-title {
+  text-align: center;
+  font-weight: bold;
+}
