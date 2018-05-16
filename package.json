@@ -7,14 +7,18 @@
     "test": "test",
     "start": "webpack -d --display verbose --debug --config webpack.config.js",
     "start:dev": "webpack-dev-server  --config webpack.config.js",
-    "dev": "webpack -d --display verbose --config webpack.config.js --watch"
+    "dev": "webpack -d --display verbose --config webpack.config.js --watch",
+    "build:lab": "node ./node_modules/babel-cli/bin/babel.js lab/generators -d lib",
+    "start:lab": "npm run build:lab && node ./lib/generators.js"
   },
   "author": "Thomas Hull",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.2",
+    "react-tabs": "^2.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -22,7 +26,6 @@
     "babel-plugin-transform-async-generator-functions": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.11",

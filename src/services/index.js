@@ -1,5 +1,7 @@
-import { fetch } from './search-service'
+import { fetchSubreddit } from './search-service'
+import { streamSubreddit } from './stream-service'
 
 export {
-  fetch
+  fetchSubreddit,
+  streamSubreddit
 }
