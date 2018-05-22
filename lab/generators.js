@@ -4,23 +4,13 @@ function* generator() {
   while (true) {
     if (i < arr.length)
       yield arr[i++]
+    else return 
   }
 }
 
-// for(const l of generator()) {
-//   console.log(l)
-// }
-
-function* idMaker(prefix) {
-  var index = 0;
-  while (true)
-    yield `${prefix}_${index++}`;
+for(const l of generator()) {
+  console.log(l)
 }
-
-
-// for (const id of idMaker('guuid')) {
-//   console.log(id)
-// }
 
 function* fib(number) {
   let fm2 = 0
@@ -35,9 +25,26 @@ function* fib(number) {
   }
 }
 
+
 // for (let f of fib(10)) {
 //   console.log(f)
 // }
+
+// const fibIt = fib(10)
+// console.log(fibIt.next())
+
+
+function* idMaker(prefix) {
+  var index = 0;
+  while (true)
+    yield `${prefix}_${index++}`;
+}
+
+
+// for (const id of idMaker('guid')) {
+//   console.log(id)
+// }
+
 
 
 function* yieldStar() {
@@ -49,14 +56,15 @@ function* yieldStar() {
 
 function* pauseResume() {
   yield
-  const s = 's'
-  console.log(s)
+  console.log('s')
   yield
-  console.log('sssaa')
-  
+  console.log('ss')
 }
 
-
-// for (let f of pauseResume(10)) {
-//   console.log(f)
-// }
+// const prIt = pauseResume()
+// console.log('No s\'s')
+// prIt.next()
+// console.log('One S')
+// prIt.next()
+// console.log('Two S\'s')
+// prIt.next()

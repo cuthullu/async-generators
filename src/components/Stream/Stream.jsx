@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { streamSubreddit } from '../../services'
+import { createSubredditStream } from '../../services'
 import { Image } from './Image'
-const delay = seconds => new Promise(resolve => setTimeout(resolve, seconds * 1000))
+const sleep = seconds => new Promise(resolve => setTimeout(resolve, seconds * 1000))
 
 export class Stream extends Component {
   state = {
-    current: undefined,
+    imageUrl: undefined,
   }
 
   componentDidMount() {
-    const stream = streamSubreddit('earthporn')
     this.__isMounted = true
+    const stream = createSubredditStream('dogpictures')
     this.runStream(stream)
   }
 
@@ -18,17 +18,18 @@ export class Stream extends Component {
     this.__isMounted = false
   }
 
-  runStream = async iterator => {
-    for await (let current of iterator) {
+  runStream = async stream => {
+    for await (const imageUrl of stream) {
       if (!this.__isMounted) break
-      this.setState({ current })
-      await delay(2)
+      
+      this.setState({ imageUrl })
+      await sleep(2)
     }
   }
 
   render() {
-    const { current } = this.state
+    const { imageUrl } = this.state
 
-    return <Image source={current} />
+    return <Image source={imageUrl} />
   }
 }

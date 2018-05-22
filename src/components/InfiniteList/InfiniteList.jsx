@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import { Searchbox } from './Searchbox'
-import { fetchSubreddit } from '../../services'
-import { ResultSet } from './ResultSet'
+import { createSubredditPaginator } from '../../services'
+import { List } from './List'
 
 export class InfiniteList extends Component {
   state = {
-    results: [],
+    pages: [],
   }
 
-  handleSubmit = value => {
-    this.setState({
-      results: [],
-      query: fetchSubreddit(value)
-    }, () => {
-      this.fetchResults()
-    })
+  handleSubmit = async subreddit => {
+    this.paginator = createSubredditPaginator(subreddit)
+    const firstPage = await this.paginator.next()
+
+    this.setState({ pages: firstPage.value })
   }
 
-  fetchResults = async () => {
-    const { query, results } = this.state
-    const response = await query.next()
-    this.setState({
-      results: [...results, ...response.value],
-    })
+  fetchNextPage = async () => {
+    const nextPage = await this.paginator.next()
+
+    this.setState(prevState => ({
+      pages: [...prevState.pages, ...nextPage.value],
+    }))
   }
 
   render() {
-    const { handleSubmit, fetchResults } = this
-    const { results, moreResults } = this.state
+    const { handleSubmit, fetchNextPage } = this
+    const { pages } = this.state
 
     return <div>
       <Searchbox onSubmit={handleSubmit} />
-      <button onClick={fetchResults} disabled={!results.length}>More results</button>
-      <ResultSet results={results} />
+
+      <button onClick={fetchNextPage} disabled={!pages.length}>More results</button>
+      
+      <List items={pages} />
     </div>
   }
 }

@@ -8,14 +8,17 @@
     "start": "webpack -d --display verbose --debug --config webpack.config.js",
     "start:dev": "webpack-dev-server  --config webpack.config.js",
     "dev": "webpack -d --display verbose --config webpack.config.js --watch",
-    "build:lab": "node ./node_modules/babel-cli/bin/babel.js lab/generators -d lib",
-    "start:lab": "npm run build:lab && node ./lib/generators.js"
+    "build:lab": "node ./node_modules/babel-cli/bin/babel.js lab/ -d lib",
+    "start:it": "npm run build:lab && node ./lib/iterators.js",
+    "start:gen": "npm run build:lab && node ./lib/generators.js",
+    "start:async": "npm run build:lab && node ./lib/async.js"
   },
   "author": "Thomas Hull",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "node-fetch": "^2.1.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-tabs": "^2.2.2"

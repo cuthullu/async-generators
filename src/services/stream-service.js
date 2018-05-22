@@ -1,7 +1,7 @@
-export async function* streamSubreddit(subreddit) {
+export async function* createSubredditStream(subreddit) {
   let after = ''
   while (true) {
-    const url = `https://www.reddit.com/r/${subreddit}.json?&after=${after}`
+    const url = `https://www.reddit.com/r/${subreddit}.json?limit=10&after=${after}`
     const resp = await fetch(url)
     const jsonResp = await resp.json()
     after = jsonResp.data.after

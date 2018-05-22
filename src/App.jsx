@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { InfiniteList, Stream } from './components'
+import { InfiniteList, Stream, WordCountStream } from './components'
 
 import './style/react-tabs.css';
 import './style/app.css';
@@ -17,12 +17,16 @@ class App extends Component {
           <TabList>
             <Tab>Subreddit list</Tab>
             <Tab>Stream</Tab>
+            <Tab>Word Count Stream</Tab>
           </TabList>
           <TabPanel>
             <InfiniteList />
           </TabPanel>
           <TabPanel>
             <Stream />
+          </TabPanel>
+          <TabPanel>
+            <WordCountStream />
           </TabPanel>
         </Tabs>
       </div>

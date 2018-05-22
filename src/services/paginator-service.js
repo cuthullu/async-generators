@@ -1,4 +1,4 @@
-export async function* fetchSubreddit(subreddit) {
+export async function* createSubredditPaginator(subreddit) {
   let after = ''
   while (true) {
     const url = `https://www.reddit.com/r/${subreddit}.json?limit=10&after=${after}`

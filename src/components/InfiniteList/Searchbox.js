@@ -19,11 +19,11 @@ export class Searchbox extends Component {
 
   render() {
     const { handleSearchChange, handleSubmit } = this
-    return <div>
+    return <span>
       /r/
       <input type="text" onChange={handleSearchChange} placeholder="subreddit" />
       <button onClick={handleSubmit} >Go</button>
-    </div>
+    </span>
 
   }
 }
