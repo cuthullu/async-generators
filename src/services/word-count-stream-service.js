@@ -18,13 +18,17 @@ async function* createPageStream(permalinks) {
     const resp = await fetch(url)
     const jsonResp = await resp.json()
     const [pageInfo, comments] = jsonResp
+    const title = pageInfo.data.children[0].data.title
     const words = comments.data.children
       .map(({ data }) => data.body)
       .reduce(bodyWordConcat, [])
       .reduce(countWords, {})
-    const topWordTup = Object.entries(words).sort(maxWord)
+    const topWordTups = Object.entries(words).sort(maxWord).slice(0, 9)
 
-    yield topWordTup.slice(0, 9)
+    yield {
+      title: title,
+      topWordTups
+    }
   }
 }
 

@@ -8,9 +8,9 @@ function* generator() {
   }
 }
 
-for(const l of generator()) {
-  console.log(l)
-}
+// for(const l of generator()) {
+//   console.log(l)
+// }
 
 function* fib(number) {
   let fm2 = 0
@@ -32,7 +32,6 @@ function* fib(number) {
 
 // const fibIt = fib(10)
 // console.log(fibIt.next())
-
 
 function* idMaker(prefix) {
   var index = 0;

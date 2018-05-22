@@ -18,10 +18,10 @@ export class WordCountStream extends Component {
   }
 
   runStream = async stream => {
-    for await (const topWordTups of stream) {
+    for await (const page of stream) {
       if (!this.__isMounted) break
 
-      this.setState({ topWordTups })
+      this.setState({ page })
       await sleep(2)
     }
   }
@@ -31,11 +31,15 @@ export class WordCountStream extends Component {
   }
 
   render() {
-    const { topWordTups } = this.state
+    const { page } = this.state
 
-    return topWordTups ? <ul>
-      {topWordTups.map(this.renderTopWord)}
-    </ul>
+    return page ?
+      <div>
+        <h3>{page.title}</h3>
+        <ul>
+          {page.topWordTups.map(this.renderTopWord)}
+        </ul>
+      </div>
       : null
   }
 }
