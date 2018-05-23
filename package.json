@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "test",
-    "buikd": "webpack -d --display verbose --debug --config webpack.config.js",
+    "build": "webpack -d --display verbose --debug --config webpack.config.js",
     "start": "webpack-dev-server  --config webpack.config.js",
     "babel": "babel-node"
   },

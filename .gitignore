@@ -1,5 +1,7 @@
 node_modules
-dist
+dist/*
+!dist/index.html
+
 package-lock.json
 lib
 .vscode
